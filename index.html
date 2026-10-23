@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodCourt Express | Campus Canteen OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">🍊</div>
+                <div class="brand-name">FoodCourt <span>Express</span></div>
+            </div>
+
+            <div class="nav-section">
+                <p class="nav-label">WORKSPACE</p>
+                <a href="#" class="nav-item active" onclick="switchView('overview')">
+                    <i>🏠</i> Overview
+                </a>
+                <a href="#" class="nav-item" onclick="switchView('menu')">
+                    <i>🍱</i> Browse menu
+                </a>
+                <a href="#" class="nav-item" onclick="switchView('orders')">
+                    <i>⏱️</i> My orders <span class="badge" id="orderCountBadge">2</span>
+                </a>
+                <a href="#" class="nav-item" onclick="switchView('cart')">
+                    <i>🛒</i> My cart <span class="badge" id="cartCountBadge">0</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <p class="nav-label">MANAGEMENT</p>
+                <a href="#" class="nav-item" onclick="switchView('admin')">
+                    <i>📊</i> Admin panel
+                </a>
+            </div>
+
+            <div class="sidebar-promo">
+                <div class="promo-icon">✨</div>
+                <h4>Hungry for more?</h4>
+                <p>Skip the line and make your break count.</p>
+                <button class="promo-btn" onclick="switchView('menu')">Explore menu →</button>
+            </div>
+
+            <div class="user-footer">
+                <div class="user-avatar">R</div>
+                <div class="user-info">
+                    <h5>Rohan Sharma</h5>
+                    <p>Student account</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="workspace-path">Workspace / <span id="currentViewTitle">Overview</span></div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <i>🔍</i>
+                        <input type="text" placeholder="Search food or canteen..." id="globalSearch">
+                    </div>
+                    <div class="icon-btn">🔔</div>
+                    <div class="user-badge-top">
+                        <div class="avatar-sm">R</div>
+                        <span>Rohan</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- VIEW 1: OVERVIEW -->
+            <section id="overviewView" class="view-section active">
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <span class="pill-badge">🟢 CAMPUS FOOD, REIMAGINED</span>
+                        <h1>Your break, <br><span class="gradient-text">served faster.</span></h1>
+                        <p>Good food, less waiting. Order from your favourite campus counters and track every token in one place.</p>
+                        <div class="hero-btns">
+                            <button class="btn-primary" onclick="switchView('menu')">Order food →</button>
+                            <button class="btn-secondary" onclick="switchView('orders')">Track an order →</button>
+                        </div>
+                    </div>
+                    <div class="hero-image-card">
+                        <div class="floating-badge top">⚡ Quick pickup<br><small>Skip the queue</small></div>
+                        <div class="floating-badge bottom">✅ Token is live<br><small>Know when it's ready</small></div>
+                    </div>
+                </div>
+
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <p class="m-label">Available counters</p>
+                        <h3 class="m-val">04 <span class="sub-green">open now</span></h3>
+                    </div>
+                    <div class="metric-card">
+                        <p class="m-label">Average wait</p>
+                        <h3 class="m-val">8 <span class="sub-unit">mins</span> <span class="sub-pill">-3 mins</span></h3>
+                    </div>
+                    <div class="metric-card">
+                        <p class="m-label">Your active token</p>
+                        <h3 class="m-val active-token">FC1024 <span class="link-sm" onclick="switchView('orders')">View →</span></h3>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="block-header">
+                        <h2>Popular canteens</h2>
+                        <span class="link-orange" onclick="switchView('menu')">View all counters →</span>
+                    </div>
+                    <div class="canteen-grid">
+                        <div class="canteen-card" onclick="openCanteen('North Canteen')">
+                            <div class="c-badge open">🟢 Open</div>
+                            <h4>North Canteen</h4>
+                            <p class="c-desc">Meals • Wraps • Rice bowls</p>
+                            <div class="c-footer">
+                                <span>⭐ 4.8</span>
+                                <span class="link-sm">View menu →</span>
+                            </div>
+                        </div>
+                        <div class="canteen-card" onclick="openCanteen('South Canteen')">
+                            <div class="c-badge open">🟢 Open</div>
+                            <h4>South Canteen</h4>
+                            <p class="c-desc">Pizza • Sandwiches • Pasta</p>
+                            <div class="c-footer">
+                                <span>⭐ 4.6</span>
+                                <span class="link-sm">View menu →</span>
+                            </div>
+                        </div>
+                        <div class="canteen-card" onclick="openCanteen('Snacks Corner')">
+                            <div class="c-badge open">🟢 Open</div>
+                            <h4>Snacks Corner</h4>
+                            <p class="c-desc">Burgers • Fries • Quick bites</p>
+                            <div class="c-footer">
+                                <span>⭐ 4.7</span>
+                                <span class="link-sm">View menu →</span>
+                            </div>
+                        </div>
+                        <div class="canteen-card" onclick="openCanteen('Beverages Bar')">
+                            <div class="c-badge open">🟢 Open</div>
+                            <h4>Beverages Bar</h4>
+                            <p class="c-desc">Coffee • Shakes • Coolers</p>
+                            <div class="c-footer">
+                                <span>⭐ 4.5</span>
+                                <span class="link-sm">View menu →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: BROWSE MENU -->
+            <section id="menuView" class="view-section">
+                <div class="menu-top-banner">
+                    <div>
+                        <span class="pill-badge">MADE FRESH ON CAMPUS</span>
+                        <h2>Explore the menu.</h2>
+                        <p>Cravings, meet your match. Pick a counter and find your favourite.</p>
+                    </div>
+                    <div class="menu-filter-dropdown">
+                        <select id="canteenSelector" onchange="filterMenuByCanteen()">
+                            <option value="North Canteen">North Canteen</option>
+                            <option value="South Canteen">South Canteen</option>
+                            <option value="Snacks Corner">Snacks Corner</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="category-tabs">
+                    <button class="cat-btn active" onclick="filterCategory('All')">All items</button>
+                    <button class="cat-btn" onclick="filterCategory('Meals')">Meals</button>
+                    <button class="cat-btn" onclick="filterCategory('Snacks')">Snacks</button>
+                    <button class="cat-btn" onclick="filterCategory('Drinks')">Drinks</button>
+                </div>
+
+                <div class="menu-items-grid" id="dynamicMenuGrid">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </section>
+
+            <!-- VIEW 3: MY ORDERS / TRACK TOKEN -->
+            <section id="ordersView" class="view-section">
+                <div class="order-track-container">
+                    <div class="track-header">
+                        <div>
+                            <span class="pill-badge">NO MORE GUESSING</span>
+                            <h2>Track your token.</h2>
+                            <p>Your food journey, updated every step of the way.</p>
+                        </div>
+                        <span class="status-pill ready">Ready</span>
+                    </div>
+
+                    <div class="track-card-main">
+                        <div class="token-banner">
+                            <div>
+                                <p class="tb-label">YOUR ORDER TOKEN</p>
+                                <h1 class="tb-token">#FC1024</h1>
+                                <p class="tb-sub">North Canteen • Pickup order</p>
+                            </div>
+                            <div class="pickup-ready-box">
+                                <span>🔥 Estimated Pickup</span>
+                                <h3>Ready for pickup</h3>
+                            </div>
+                        </div>
+
+                        <div class="timeline-box">
+                            <div class="t-item completed">
+                                <div class="t-dot">✓</div>
+                                <div class="t-info">
+                                    <h4>Order placed</h4>
+                                    <p>Today, 10:15 AM</p>
+                                </div>
+                                <span class="t-status">Done</span>
+                            </div>
+                            <div class="t-item completed">
+                                <div class="t-dot">✓</div>
+                                <div class="t-info">
+                                    <h4>Preparing your food</h4>
+                                    <p>The counter is working on your order</p>
+                                </div>
+                                <span class="t-status">Complete</span>
+                            </div>
+                            <div class="t-item active-prep">
+                                <div class="t-dot pulse">🔥</div>
+                                <div class="t-info">
+                                    <h4>Ready for pickup</h4>
+                                    <p>Show your token at the counter</p>
+                                </div>
+                                <span class="t-status orange">Ready now</span>
+                            </div>
+                        </div>
+
+                        <div class="queue-progress-footer">
+                            <div class="qp-info">
+                                <span>QUEUE POSITION</span>
+                                <h3>0 / in line</h3>
+                            </div>
+                            <button class="btn-secondary" onclick="alert('Status refreshed!')">🔄 Refresh status</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 4: MY CART -->
+            <section id="cartView" class="view-section">
+                <div class="cart-layout">
+                    <div class="cart-left">
+                        <h2>Your cart.</h2>
+                        <p class="sub-text">One last look before your food gets cooking.</p>
+                        
+                        <div class="cart-box" id="cartItemsContainer">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="cart-right">
+                        <div class="summary-box">
+                            <h3>Order summary</h3>
+                            <div class="summary-canteen-pill">
+                                <span>🏠 North Canteen</span>
+                                <small>Pickup counter</small>
+                            </div>
+                            <div class="sum-row">
+                                <span>Subtotal</span>
+                                <span id="cartSubtotal">₹0</span>
+                            </div>
+                            <div class="sum-row">
+                                <span>Platform fee</span>
+                                <span>₹0</span>
+                            </div>
+                            <div class="sum-row total">
+                                <span>Total payable</span>
+                                <span id="cartTotalPayable">₹0</span>
+                            </div>
+                            <button class="btn-primary full-width" onclick="placeOrder()">Place order →</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 5: ADMIN PANEL -->
+            <section id="adminView" class="view-section">
+                <div class="admin-dashboard">
+                    <h2>Admin dashboard.</h2>
+                    <p class="sub-text">A clear view of the queue, so every order keeps moving.</p>
+
+                    <div class="admin-metrics">
+                        <div class="a-metric">
+                            <p>TOTAL ORDERS</p>
+                            <h2>13</h2>
+                            <span class="sub-green">↑ 18% this week</span>
+                        </div>
+                        <div class="a-metric">
+                            <p>PREPARING</p>
+                            <h2>0</h2>
+                            <span>Active in kitchen</span>
+                        </div>
+                        <div class="a-metric">
+                            <p>READY TO PICK UP</p>
+                            <h2>6</h2>
+                            <span class="sub-green">Keep it moving</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-table-box">
+                        <h3>Live order queue</h3>
+                        <table class="live-table">
+                            <thead>
+                                <tr>
+                                    <th>TOKEN</th>
+                                    <th>ORDER</th>
+                                    <th>STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrderTableBody">
+                                <tr>
+                                    <td><strong>#FC1019</strong></td>
+                                    <td>Veg Burger + Cold Coffee</td>
+                                    <td><span class="badge-status ready">Ready</span></td>
+                                    <td><button class="btn-sm-green">✓ Ready</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#FC1020</strong></td>
+                                    <td>Paneer Wrap</td>
+                                    <td><span class="badge-status ready">Ready</span></td>
+                                    <td><button class="btn-sm-green">✓ Ready</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
