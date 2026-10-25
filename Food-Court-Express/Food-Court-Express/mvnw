@@ -1,0 +1,3 @@
+#!/bin/sh
+# Unix convenience launcher; use mvnw.cmd on Windows.
+exec mvn "$@"
