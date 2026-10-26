@@ -1,0 +1,79 @@
+﻿.\mvnw.cmd : WARNING: A terminally deprecated method in 
+sun.misc.Unsafe has been called
+At line:1 char:1
++ .\mvnw.cmd clean compile 2>&1 | Out-File 
+.\compile-log.txt -Encoding  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: A te 
+   rm...has been called:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: sun.misc.Unsafe::staticFieldBase has been called 
+by com.google.inject.internal.aop.HiddenClassDefiner (file:
+/C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Expre
+ss/.mvn/wrapper/apache-maven-3.9.11/lib/guice-5.1.0-classes
+.jar)
+WARNING: Please consider reporting this to the maintainers 
+of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed 
+in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.foodcourtexpress:food-court-express >---------------
+[INFO] Building food-court-express 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ food-court-express ---
+[INFO] Deleting C:\Users\Shree\Desktop\Food-Court-Express\Food-Court-Express\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ food-court-express ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ food-court-express ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 17 source files with javac [debug parameters release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/model/Vendor.java:[10,8] class VendorOrder is public, should be declared in a file named VendorOrder.java
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/model/VendorOrder.java:[9,8] duplicate class: com.foodcourtexpress.model.VendorOrder
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/dto/MenuItemResponse.java:[5,34] cannot access com.foodcourtexpress.model.Vendor
+  bad source file: C:\Users\Shree\Desktop\Food-Court-Express\Food-Court-Express\src\main\java\com\foodcourtexpress\model\Vendor.java
+    file does not contain class com.foodcourtexpress.model.Vendor
+    Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/dto/MenuItemResponse.java:[38,9] cannot find symbol
+  symbol:   class Vendor
+  location: class com.foodcourtexpress.dto.MenuItemResponse
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/controller/OrderController.java:[98,13] cannot find symbol
+  symbol:   class Vendor
+  location: class com.foodcourtexpress.controller.OrderController
+[INFO] 5 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.283 s
+[INFO] Finished at: 2026-10-26T00:46:38+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project food-court-express: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/model/Vendor.java:[10,8] class VendorOrder is public, should be declared in a file named VendorOrder.java
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/model/VendorOrder.java:[9,8] duplicate class: com.foodcourtexpress.model.VendorOrder
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/dto/MenuItemResponse.java:[5,34] cannot access com.foodcourtexpress.model.Vendor
+[ERROR]   bad source file: C:\Users\Shree\Desktop\Food-Court-Express\Food-Court-Express\src\main\java\com\foodcourtexpress\model\Vendor.java
+[ERROR]     file does not contain class com.foodcourtexpress.model.Vendor
+[ERROR]     Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/dto/MenuItemResponse.java:[38,9] cannot find symbol
+[ERROR]   symbol:   class Vendor
+[ERROR]   location: class com.foodcourtexpress.dto.MenuItemResponse
+[ERROR] /C:/Users/Shree/Desktop/Food-Court-Express/Food-Court-Express/src/main/java/com/foodcourtexpress/controller/OrderController.java:[98,13] cannot find symbol
+[ERROR]   symbol:   class Vendor
+[ERROR]   location: class com.foodcourtexpress.controller.OrderController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

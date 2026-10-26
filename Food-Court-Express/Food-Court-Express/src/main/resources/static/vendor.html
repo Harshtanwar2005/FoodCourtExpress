@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vendor Dashboard | Food Court Express</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        header {
+            background: #252b36;
+            color: white;
+            padding: 22px 5%;
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d5d9e0;
+        }
+
+        main {
+            width: min(1100px, 92%);
+            margin: 30px auto;
+        }
+
+        .toolbar,
+        .tabs {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .toolbar {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px #0000000a;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+        }
+
+        input,
+        select {
+            padding: 10px 12px;
+            border: 1px solid #d4d8df;
+            border-radius: 7px;
+            background: white;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .primary-button {
+            background: #e85d2a;
+            color: white;
+        }
+
+        .tab-button {
+            background: #e4e7ed;
+            color: #333;
+        }
+
+        .tab-button[aria-pressed="true"] {
+            background: #252b36;
+            color: white;
+        }
+
+        #vendor-message {
+            margin: 12px 0 20px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        #vendor-message.error {
+            color: #b42318;
+        }
+
+        #vendor-orders {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+        }
+
+        .vendor-order {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e4e7ec;
+            box-shadow: 0 3px 12px #00000008;
+            overflow-wrap: anywhere;
+        }
+
+        .vendor-order h2 {
+            margin: 0 0 14px;
+            font-size: 19px;
+        }
+
+        .vendor-order p {
+            margin: 9px 0;
+            line-height: 1.5;
+        }
+
+        .vendor-order ul {
+            padding-left: 22px;
+            line-height: 1.7;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #fff0dc;
+            color: #874500;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .order-status.completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .order-status.cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .order-actions {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid #eceef2;
+        }
+
+        .order-actions label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .order-actions select {
+            display: block;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .order-actions button {
+            width: 100%;
+            margin-top: 10px;
+            background: #e85d2a;
+            color: white;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 36px 20px;
+            text-align: center;
+            background: white;
+            border: 1px dashed #cbd0d8;
+            border-radius: 12px;
+            color: #606875;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 4%;
+            }
+
+            main {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            .toolbar {
+                align-items: stretch;
+            }
+
+            .toolbar input,
+            .toolbar button {
+                width: 100%;
+            }
+
+            .tabs button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Food Court Express</h1>
+        <p>Vendor Order Dashboard</p>
+    </header>
+
+    <main>
+        <section class="toolbar" aria-label="Vendor settings">
+            <label for="vendor-id">Vendor ID</label>
+
+            <input
+                type="number"
+                id="vendor-id"
+                min="1"
+                step="1"
+                value="1"
+                required
+            >
+
+            <button type="button" id="load-orders" class="primary-button">
+                Load Orders
+            </button>
+        </section>
+
+        <nav class="tabs" aria-label="Order views">
+            <button
+                type="button"
+                id="active-view"
+                class="tab-button"
+                aria-pressed="true"
+            >
+                Active Orders
+            </button>
+
+            <button
+                type="button"
+                id="history-view"
+                class="tab-button"
+                aria-pressed="false"
+            >
+                Order History
+            </button>
+        </nav>
+
+        <p id="vendor-message" role="status" aria-live="polite">
+            Loading orders...
+        </p>
+
+        <section id="vendor-orders" aria-label="Vendor orders"></section>
+    </main>
+
+    <script src="/vendor.js" defer></script>
+</body>
+</html>
